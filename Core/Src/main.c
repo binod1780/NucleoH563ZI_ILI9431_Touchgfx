@@ -45,7 +45,7 @@
 CRC_HandleTypeDef hcrc;
 
 SPI_HandleTypeDef hspi1;
-DMA_HandleTypeDef handle_GPDMA1_Channel0;
+DMA_HandleTypeDef handle_GPDMA2_Channel0;
 
 TIM_HandleTypeDef htim2;
 
@@ -56,10 +56,11 @@ TIM_HandleTypeDef htim2;
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
-static void MX_GPDMA1_Init(void);
-static void MX_SPI1_Init(void);
+static void MX_GPDMA2_Init(void);
 static void MX_CRC_Init(void);
 static void MX_TIM2_Init(void);
+static void MX_ICACHE_Init(void);
+static void MX_SPI1_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -98,10 +99,11 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_GPDMA1_Init();
-  MX_SPI1_Init();
+  MX_GPDMA2_Init();
   MX_CRC_Init();
   MX_TIM2_Init();
+  MX_ICACHE_Init();
+  MX_SPI1_Init();
   MX_TouchGFX_Init();
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT(&htim2);
@@ -131,25 +133,26 @@ void SystemClock_Config(void)
 
   /** Configure the main internal regulator output voltage
   */
-  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE0);
+  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE3);
 
   while(!__HAL_PWR_GET_FLAG(PWR_FLAG_VOSRDY)) {}
 
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
-  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_CSI;
+  RCC_OscInitStruct.CSIState = RCC_CSI_ON;
+  RCC_OscInitStruct.CSICalibrationValue = RCC_CSICALIBRATION_DEFAULT;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-  RCC_OscInitStruct.PLL.PLLSource = RCC_PLL1_SOURCE_HSE;
+  RCC_OscInitStruct.PLL.PLLSource = RCC_PLL1_SOURCE_CSI;
   RCC_OscInitStruct.PLL.PLLM = 1;
-  RCC_OscInitStruct.PLL.PLLN = 62;
+  RCC_OscInitStruct.PLL.PLLN = 50;
   RCC_OscInitStruct.PLL.PLLP = 2;
-  RCC_OscInitStruct.PLL.PLLQ = 10;
+  RCC_OscInitStruct.PLL.PLLQ = 4;
   RCC_OscInitStruct.PLL.PLLR = 2;
-  RCC_OscInitStruct.PLL.PLLRGE = RCC_PLL1_VCIRANGE_3;
+  RCC_OscInitStruct.PLL.PLLRGE = RCC_PLL1_VCIRANGE_2;
   RCC_OscInitStruct.PLL.PLLVCOSEL = RCC_PLL1_VCORANGE_WIDE;
-  RCC_OscInitStruct.PLL.PLLFRACN = 4096;
+  RCC_OscInitStruct.PLL.PLLFRACN = 0;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     Error_Handler();
@@ -164,9 +167,9 @@ void SystemClock_Config(void)
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
-  RCC_ClkInitStruct.APB3CLKDivider = RCC_HCLK_DIV1;
+  RCC_ClkInitStruct.APB3CLKDivider = RCC_HCLK_DIV2;
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_5) != HAL_OK)
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_4) != HAL_OK)
   {
     Error_Handler();
   }
@@ -208,30 +211,58 @@ static void MX_CRC_Init(void)
 }
 
 /**
-  * @brief GPDMA1 Initialization Function
+  * @brief GPDMA2 Initialization Function
   * @param None
   * @retval None
   */
-static void MX_GPDMA1_Init(void)
+static void MX_GPDMA2_Init(void)
 {
 
-  /* USER CODE BEGIN GPDMA1_Init 0 */
+  /* USER CODE BEGIN GPDMA2_Init 0 */
 
-  /* USER CODE END GPDMA1_Init 0 */
+  /* USER CODE END GPDMA2_Init 0 */
 
   /* Peripheral clock enable */
-  __HAL_RCC_GPDMA1_CLK_ENABLE();
+  __HAL_RCC_GPDMA2_CLK_ENABLE();
 
-  /* GPDMA1 interrupt Init */
-    HAL_NVIC_SetPriority(GPDMA1_Channel0_IRQn, 0, 0);
-    HAL_NVIC_EnableIRQ(GPDMA1_Channel0_IRQn);
+  /* GPDMA2 interrupt Init */
+    HAL_NVIC_SetPriority(GPDMA2_Channel0_IRQn, 0, 0);
+    HAL_NVIC_EnableIRQ(GPDMA2_Channel0_IRQn);
 
-  /* USER CODE BEGIN GPDMA1_Init 1 */
+  /* USER CODE BEGIN GPDMA2_Init 1 */
 
-  /* USER CODE END GPDMA1_Init 1 */
-  /* USER CODE BEGIN GPDMA1_Init 2 */
+  /* USER CODE END GPDMA2_Init 1 */
+  /* USER CODE BEGIN GPDMA2_Init 2 */
 
-  /* USER CODE END GPDMA1_Init 2 */
+  /* USER CODE END GPDMA2_Init 2 */
+
+}
+
+/**
+  * @brief ICACHE Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_ICACHE_Init(void)
+{
+
+  /* USER CODE BEGIN ICACHE_Init 0 */
+
+  /* USER CODE END ICACHE_Init 0 */
+
+  /* USER CODE BEGIN ICACHE_Init 1 */
+
+  /* USER CODE END ICACHE_Init 1 */
+
+  /** Enable instruction cache (default 2-ways set associative cache)
+  */
+  if (HAL_ICACHE_Enable() != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN ICACHE_Init 2 */
+
+  /* USER CODE END ICACHE_Init 2 */
 
 }
 
@@ -302,7 +333,7 @@ static void MX_TIM2_Init(void)
 
   /* USER CODE END TIM2_Init 1 */
   htim2.Instance = TIM2;
-  htim2.Init.Prescaler = 250-1;
+  htim2.Init.Prescaler = 100-1;
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
   htim2.Init.Period = 49999;
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
@@ -341,8 +372,8 @@ static void MX_GPIO_Init(void)
   /* USER CODE END MX_GPIO_Init_1 */
 
   /* GPIO Ports Clock Enable */
+  __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOF_CLK_ENABLE();
-  __HAL_RCC_GPIOH_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
@@ -353,7 +384,13 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(RESET_GPIO_Port, RESET_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, DC_Pin|RESETB1_Pin|SPI1_NSS_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, DC_Pin|SPI1_NSS_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin : User_Button_Pin */
+  GPIO_InitStruct.Pin = User_Button_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(User_Button_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pin : LED_Pin */
   GPIO_InitStruct.Pin = LED_Pin;
@@ -369,8 +406,8 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(RESET_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : DC_Pin RESETB1_Pin SPI1_NSS_Pin */
-  GPIO_InitStruct.Pin = DC_Pin|RESETB1_Pin|SPI1_NSS_Pin;
+  /*Configure GPIO pins : DC_Pin SPI1_NSS_Pin */
+  GPIO_InitStruct.Pin = DC_Pin|SPI1_NSS_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -387,7 +424,7 @@ static void MX_GPIO_Init(void)
 
 /**
   * @brief  Period elapsed callback in non blocking mode
-  * @note   This function is called  when TIM6 interrupt took place, inside
+  * @note   This function is called  when TIM7 interrupt took place, inside
   * HAL_TIM_IRQHandler(). It makes a direct call to HAL_IncTick() to increment
   * a global variable "uwTick" used as application time base.
   * @param  htim : TIM handle
@@ -402,7 +439,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 			touchgfxSignalVSync();
 		}
   /* USER CODE END Callback 0 */
-  if (htim->Instance == TIM6)
+  if (htim->Instance == TIM7)
   {
     HAL_IncTick();
   }

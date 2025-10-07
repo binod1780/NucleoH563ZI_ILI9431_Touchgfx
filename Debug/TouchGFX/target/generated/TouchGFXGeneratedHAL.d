@@ -58,6 +58,9 @@ TouchGFX/target/generated/TouchGFXGeneratedHAL.o: \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextArea.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/TypedText.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/Texts.hpp \
+ ../TouchGFX/gui/include/gui/screen1_screen/Screen1View.hpp \
+ ../TouchGFX/generated/gui_generated/include/gui_generated/screen1_screen/Screen1ViewBase.hpp \
+ ../TouchGFX/gui/include/gui/screen1_screen/Screen1Presenter.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/PaintImpl.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/Paint.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/PaintRGB565Impl.hpp \
@@ -78,6 +81,7 @@ TouchGFX/target/generated/TouchGFXGeneratedHAL.o: \
  ../Drivers/STM32H5xx_HAL_Driver/Inc/stm32h5xx_hal_rcc_ex.h \
  ../Drivers/STM32H5xx_HAL_Driver/Inc/stm32h5xx_hal_gpio.h \
  ../Drivers/STM32H5xx_HAL_Driver/Inc/stm32h5xx_hal_gpio_ex.h \
+ ../Drivers/STM32H5xx_HAL_Driver/Inc/stm32h5xx_hal_icache.h \
  ../Drivers/STM32H5xx_HAL_Driver/Inc/stm32h5xx_hal_dma.h \
  ../Drivers/STM32H5xx_HAL_Driver/Inc/stm32h5xx_hal_dma_ex.h \
  ../Drivers/STM32H5xx_HAL_Driver/Inc/stm32h5xx_hal_cortex.h \
@@ -150,6 +154,9 @@ TouchGFX/target/generated/TouchGFXGeneratedHAL.o: \
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextArea.hpp:
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/TypedText.hpp:
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/Texts.hpp:
+../TouchGFX/gui/include/gui/screen1_screen/Screen1View.hpp:
+../TouchGFX/generated/gui_generated/include/gui_generated/screen1_screen/Screen1ViewBase.hpp:
+../TouchGFX/gui/include/gui/screen1_screen/Screen1Presenter.hpp:
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/PaintImpl.hpp:
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/Paint.hpp:
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/PaintRGB565Impl.hpp:
@@ -170,6 +177,7 @@ TouchGFX/target/generated/TouchGFXGeneratedHAL.o: \
 ../Drivers/STM32H5xx_HAL_Driver/Inc/stm32h5xx_hal_rcc_ex.h:
 ../Drivers/STM32H5xx_HAL_Driver/Inc/stm32h5xx_hal_gpio.h:
 ../Drivers/STM32H5xx_HAL_Driver/Inc/stm32h5xx_hal_gpio_ex.h:
+../Drivers/STM32H5xx_HAL_Driver/Inc/stm32h5xx_hal_icache.h:
 ../Drivers/STM32H5xx_HAL_Driver/Inc/stm32h5xx_hal_dma.h:
 ../Drivers/STM32H5xx_HAL_Driver/Inc/stm32h5xx_hal_dma_ex.h:
 ../Drivers/STM32H5xx_HAL_Driver/Inc/stm32h5xx_hal_cortex.h:

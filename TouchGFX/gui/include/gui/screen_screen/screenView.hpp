@@ -14,6 +14,11 @@ public:
     virtual void handleTickEvent();
 protected:
     int counter;
+
+void switchToScreen2()
+{
+    static_cast<FrontendApplication*>(Application::getInstance())->gotoScreen1ScreenNoTransition();
+}
 };
 
 #endif // SCREENVIEW_HPP

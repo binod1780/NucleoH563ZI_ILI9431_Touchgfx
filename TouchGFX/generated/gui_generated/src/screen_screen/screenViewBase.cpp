@@ -41,3 +41,15 @@ void screenViewBase::setupScreen()
 {
 
 }
+
+void screenViewBase::handleKeyEvent(uint8_t key)
+{
+    if(0 == key)
+    {
+        //Interaction1
+        //When hardware button 0 clicked change screen to Screen1
+        //Go to Screen1 with no screen transition
+        application().gotoScreen1ScreenNoTransition();
+    
+    }
+}

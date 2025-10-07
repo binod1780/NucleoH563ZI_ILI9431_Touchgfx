@@ -19,10 +19,14 @@ void screenView::handleTickEvent()
 {
 	counter++;
 	//Unicode::snprintf(textArea1Buffer, TEXTAREA1_SIZE, "%s", touchgfx::TypedText(T___SINGLEUSE_Y9WY).getText());
-	Unicode::snprintf(textArea1Buffer, TEXTAREA1_SIZE, "%d", counter);
-	textArea1.invalidate();
-	if(counter == 100000)
+
+	if(counter == 30)
 	{
 		counter = 0;
+		switchToScreen2();
 	}
+	Unicode::snprintf(textArea1Buffer, TEXTAREA1_SIZE, "%d", counter);
+	textArea1.invalidate();
+
+
 }

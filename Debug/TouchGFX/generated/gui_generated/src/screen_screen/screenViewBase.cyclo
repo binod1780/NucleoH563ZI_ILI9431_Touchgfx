@@ -61,12 +61,14 @@
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp:79:10:void touchgfx::TextAreaWithOneWildcard::setWildcard1(const touchgfx::Unicode::UnicodeChar*)	1
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp:84:41:virtual const touchgfx::Unicode::UnicodeChar* touchgfx::TextAreaWithOneWildcard::getWildcard1() const	1
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp:98:10:void touchgfx::TextAreaWithOneWildcard::setWildcard(const touchgfx::Unicode::UnicodeChar*)	1
+../TouchGFX/generated/gui_generated/include/gui_generated/screen_screen/screenViewBase.hpp:22:26:FrontendApplication& screenViewBase::application()	1
 ../Middlewares/ST/touchgfx/framework/include/mvp/View.hpp:36:7:touchgfx::View<screenPresenter>::~View()	1
 ../Middlewares/ST/touchgfx/framework/include/mvp/View.hpp:36:7:virtual touchgfx::View<screenPresenter>::~View()	1
 ../TouchGFX/generated/gui_generated/src/screen_screen/screenViewBase.cpp:8:1:screenViewBase::screenViewBase()	1
 ../TouchGFX/generated/gui_generated/src/screen_screen/screenViewBase.cpp:35:1:screenViewBase::~screenViewBase()	1
 ../TouchGFX/generated/gui_generated/src/screen_screen/screenViewBase.cpp:35:1:virtual screenViewBase::~screenViewBase()	1
 ../TouchGFX/generated/gui_generated/src/screen_screen/screenViewBase.cpp:40:6:virtual void screenViewBase::setupScreen()	1
+../TouchGFX/generated/gui_generated/src/screen_screen/screenViewBase.cpp:45:6:virtual void screenViewBase::handleKeyEvent(uint8_t)	2
 ../Middlewares/ST/touchgfx/framework/include/mvp/View.hpp:39:5:touchgfx::View<T>::View() [with T = screenPresenter]	1
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp:62:7:touchgfx::TextAreaWithOneWildcard::~TextAreaWithOneWildcard()	1
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextAreaWithWildcard.hpp:62:7:virtual touchgfx::TextAreaWithOneWildcard::~TextAreaWithOneWildcard()	1
